@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-   "test": "jest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,9 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "mongoose": "^8.9.5"
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5",
+    "supertest": "^7.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"
