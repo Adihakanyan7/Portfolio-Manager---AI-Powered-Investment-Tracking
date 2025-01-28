@@ -1,8 +1,8 @@
-const Security = require('../models/security');
-const Stock = require('../models/stock');
-const Bond = require('../models/bond');
+import Security from '../models/security.js';
+import Stock from '../models/stock.js';
+import Bond from '../models/bond.js';
 
-const createStock = async (req, res) => {
+export const createStock = async (req, res) => {
   const stock = new Stock(req.body);
   try {
     const savedStock = await stock.save();
@@ -16,7 +16,7 @@ const createStock = async (req, res) => {
   }
 };
 
-const createBond = async (req, res) => {
+export const createBond = async (req, res) => {
   const bond = new Bond(req.body);
   try {
     const savedBond = await bond.save();
@@ -30,7 +30,7 @@ const createBond = async (req, res) => {
   }
 };
 
-const getAllSecurities = async (req, res) => {
+export const getAllSecurities = async (req, res) => {
   try {
     const securities = await Stock.find();
     res.status(200).json(securities);
@@ -39,7 +39,7 @@ const getAllSecurities = async (req, res) => {
   }
 }
 
-const updateStockByName = async (req, res) => {
+export const updateStockByName = async (req, res) => {
   try {
     const { name, shares } = req.body;
 
@@ -58,7 +58,7 @@ const updateStockByName = async (req, res) => {
   }
 }
 
-const updateBondByName = async (req, res) => {
+export const updateBondByName = async (req, res) => {
   try {
     const { name, shares } = req.body;
 
@@ -80,7 +80,7 @@ const updateBondByName = async (req, res) => {
 };
 
 
-const deleteStockByName = async (req, res) => {
+export const deleteStockByName = async (req, res) => {
   try {
     const { name } = req.body;
 
@@ -96,7 +96,7 @@ const deleteStockByName = async (req, res) => {
   }
 };
 
-const deleteBondByName = async (req, res) => {
+export const deleteBondByName = async (req, res) => {
   try {
     const { name } = req.body;
 
@@ -113,7 +113,7 @@ const deleteBondByName = async (req, res) => {
 };
 
 
-const calculateRisk = async (req, res) => {
+export const calculateRisk = async (req, res) => {
   try {
     const { name } = req.params;
 
@@ -130,5 +130,3 @@ const calculateRisk = async (req, res) => {
   }
 };
 
-
-module.exports = { createStock, createBond, getAllSecurities, updateStockByName, updateBondByName, deleteStockByName, deleteBondByName, calculateRisk };

@@ -1,8 +1,9 @@
-const express = require('express');
-const {createStock, createBond, getAllSecurities, updateStockByName, updateBondByName, deleteStockByName, deleteBondByName, calculateRisk} = require('../controllers/securityController');
+import express from 'express';
+import { createStock, createBond, getAllSecurities, updateStockByName, updateBondByName, deleteStockByName, deleteBondByName, calculateRisk } from '../controllers/securityController.js';
 const router = express.Router();
 
 router.get('/get-all-securities', getAllSecurities);
+
 router.get('/calculate-risk/:name', calculateRisk);
 
 
@@ -17,4 +18,4 @@ router.delete('/delete-bond-by-name', deleteBondByName);
 
 
 
-module.exports = router;
+export default router;

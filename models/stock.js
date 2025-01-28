@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
-const Security = require('./security');
+import mongoose from 'mongoose';
+import Security from './security.js';
 
 const StockSchema = new mongoose.Schema({
-  dividend: { type: Number, required: true },
-  subType: { type: String, required: true, enum: ['regular', 'preferred'] },
+    dividend: { type: Number, required: true },
 });
 
 const Stock = Security.discriminator('Stock', StockSchema);
 
-module.exports = Stock;
+export default Stock;
