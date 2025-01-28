@@ -32,7 +32,7 @@ export const createBond = async (req, res) => {
 
 export const getAllSecurities = async (req, res) => {
   try {
-    const securities = await Stock.find();
+    const securities = await Security.find();
     res.status(200).json(securities);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -80,53 +80,23 @@ export const updateBondByName = async (req, res) => {
 };
 
 
-export const deleteStockByName = async (req, res) => {
+export const deleteSecurityByName = async (name) => {
   try {
-    const { name } = req.body;
+    // Find and delete the stock by name
+    const deletedStock = await Security.findOneAndDelete({ name });
 
-    const deletedStock = await Stock.findOneAndDelete({ name });
-
+    // If the stock doesn't exist, simply return without doing anything
     if (!deletedStock) {
-      return res.status(404).json({ error: 'Stock not found' });
+      return;
     }
 
-    res.status(200).json({ message: `Stock '${name}' deleted successfully` });
+    // Successfully deleted; no response or further action needed
+    console.log(`Stock '${name}' deleted successfully`);
+    return;
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    // Log the error for debugging purposes
+    console.error('Error deleting stock:', error.message);
   }
 };
 
-export const deleteBondByName = async (req, res) => {
-  try {
-    const { name } = req.body;
-
-    const deletedBond = await Bond.findOneAndDelete({ name });
-
-    if (!deletedBond) {
-      return res.status(404).json({ error: 'Bond not found' });
-    }
-
-    res.status(200).json({ message: `Bond '${name}' deleted successfully` });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-
-export const calculateRisk = async (req, res) => {
-  try {
-    const { name } = req.params;
-
-    const security = await Security.findOne({ name });
-    if (!security) {
-      return res.status(404).json({ error: 'Security not found' });
-    }
-
-    const risk = security.calculateRisk();
-
-    res.status(200).json({ name: security.name, risk });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 

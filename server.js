@@ -14,6 +14,7 @@ app.use(express.json());
 
 connectDB();
 global.riskLevel = "medium";
+global.riskThreshold = { min: 2.51, max: 4.5 };
 
 app.use('/api/', securityRoutes);
 app.use('/api/', transactionRoutes);

@@ -10,10 +10,5 @@ const SecuritySchema = new mongoose.Schema({
     currentPrice: { type: Number, required: false },
 });
 
-SecuritySchema.methods.calculateRisk = function () {
-    const Ti = this.variance > 1 ? 2 : 1;
-    return this.S_industry * Ti;
-};
-
 const Security = mongoose.model('Security', SecuritySchema);
 export default Security;
