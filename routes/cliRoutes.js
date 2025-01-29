@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createTransaction } from "../controllers/transactionController.js";
 
 export const executeCommand = (input) => {
     const args = input.split(" ");
@@ -28,10 +27,29 @@ export const executeCommand = (input) => {
                 });
             break;
 
+
+        case "show_securities": 
+            axios.get('http://localhost:3000/api/get-all-securities')
+                .then(response => {
+                    if (!response.data || response.data.length === 0) {
+                        console.log("No securities available.");
+                    } else {
+                        console.log("📊 Securities List:");
+                        response.data.forEach(security => {
+                            console.log(`- ${security.name} | Type: ${security.type} | Shares: ${security.shares} | Price: $${security.currentPrice || "N/A"}`);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error(`❌ Error: ${error.response?.data?.message || "An unexpected error occurred."}`);
+                });
+            break;
+
         case "help":
             console.log(`Available commands:
                             1. transaction <symbol> <amount>
-                            6. exit
+                            2. show_securities
+                            3. exit
                             `);
             break;
 
