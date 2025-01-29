@@ -91,7 +91,7 @@ export const deleteSecurityByName = async (name) => {
     }
 
     // Successfully deleted; no response or further action needed
-    console.log(`Stock '${name}' deleted successfully`);
+    //console.log(`Stock '${name}' deleted successfully`);
     return;
   } catch (error) {
     // Log the error for debugging purposes

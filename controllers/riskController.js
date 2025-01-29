@@ -25,3 +25,4 @@ export const setRiskLevel = (req, res) => {
 export const getRiskLevel = (req, res) => {
     res.status(200).json({ riskLevel: global.riskLevel });
 };
+

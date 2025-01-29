@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import Security from '../models/security.js';
 import { deleteSecurityByName } from '../controllers/securityController.js';
+
 const calculatePortfolioRisk = async (newShares = 0, newIndustryRisk = 0, newVariance = 0, newPrice = 0) => {
     try {
         const securities = await Security.find();
@@ -50,7 +51,7 @@ export const createTransaction = async (req, res) => {
         }
 
         const existingStock = await Security.findOne({ name: stockName.toLowerCase() });
-        console.log("Existing stock:", existingStock);
+        //console.log("Existing stock:", existingStock);
 
         // 🟢 אם זו מכירה
         if (numQuantity < 0) {
@@ -141,7 +142,7 @@ export const createTransaction = async (req, res) => {
             });
     
             await newStock.save();
-            console.log("New stock saved:", newStock);
+            //console.log("New stock saved:", newStock);
             
             return res.status(201).json({
                 message: `Stock ${stockName} created and ${numQuantity} shares added.`,

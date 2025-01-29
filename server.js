@@ -6,6 +6,7 @@ import transactionRoutes from './routes/transactionRoutes.js';
 import riskRoutes from './routes/riskRoutes.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { startCLI } from './controllers/cliController.js'; // 
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ const __dirname = path.dirname(__filename);
 if (process.argv[1] === __filename) {
     app.listen(3000, () => {
         console.log('Server is running on port 3000');
+        startCLI();
     });
 } else {
     console.log('Not running as the main module');
